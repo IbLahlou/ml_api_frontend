@@ -13,8 +13,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Flex,
-  Divider,
-  VStack, // Add this import
+  VStack,
   Button,
 } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -33,12 +32,11 @@ function App() {
   return (
     <ChakraProvider>
       <Router>
-        <Flex>
+        <Flex h="100vh">
           {/* Desktop Sidebar */}
-          <Box display={{ base: 'none', md: 'block' }} m={4}>
+          <Box display={{ base: 'none', md: 'block' }} w="20%" h="full" position="fixed">
             <Sidebar />
           </Box>
-          <Divider orientation="vertical" borderColor="gray.200" display={{ base: 'none', md: 'block' }} />
           {/* Hamburger Menu Button */}
           <IconButton
             icon={<HamburgerIcon />}
@@ -71,7 +69,8 @@ function App() {
               </DrawerBody>
             </DrawerContent>
           </Drawer>
-          <Box w={{ base: '100%', md: '80%' }} p={8}>
+          {/* Main Content */}
+          <Box flex="1" ml={{ base: '0', md: '20%' }} p={8} overflowY="auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/data" element={<Data />} />

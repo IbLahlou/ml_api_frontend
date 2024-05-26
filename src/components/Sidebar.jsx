@@ -10,7 +10,7 @@ const Sidebar = () => {
       w={{ base: 'full', md: '20%' }}
       bg="black"
       color="white"
-      h="100vh"
+      h="full"
       pt="50px"
       pl={{ base: '20px', md: '70px' }}
       pr={{ base: '20px', md: '200px' }}
@@ -18,7 +18,7 @@ const Sidebar = () => {
       display="flex"
       flexDirection="column"
       alignItems="flex-start"
-      m={4}
+      m={15}
     >
       <VStack spacing={6} align="start" w="full">
         <Text fontSize="2xl" fontWeight="bold">Menu</Text>
