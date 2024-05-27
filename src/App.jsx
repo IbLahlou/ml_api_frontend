@@ -32,11 +32,7 @@ function App() {
   return (
     <ChakraProvider>
       <Router>
-        <Flex h="100vh">
-          {/* Desktop Sidebar */}
-          <Box display={{ base: 'none', md: 'block' }} w="20%" h="full" position="fixed">
-            <Sidebar />
-          </Box>
+        <Flex h="100vh" direction={{ base: 'column', md: 'row' }}>
           {/* Hamburger Menu Button */}
           <IconButton
             icon={<HamburgerIcon />}
@@ -44,7 +40,7 @@ function App() {
             onClick={onOpen}
             ref={btnRef}
             m={4}
-            position="absolute"
+            position="fixed"
             top="4"
             left="4"
           />
@@ -69,8 +65,12 @@ function App() {
               </DrawerBody>
             </DrawerContent>
           </Drawer>
+          {/* Desktop Sidebar */}
+          <Box display={{ base: 'none', md: 'block' }} w="60%" h="full" position="fixed">
+            <Sidebar />
+          </Box>
           {/* Main Content */}
-          <Box flex="1" ml={{ base: '0', md: '20%' }} p={8} overflowY="auto">
+          <Box flex="1" ml={{ base: '0', md: '1%' }} p={8} overflowY="auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/data" element={<Data />} />

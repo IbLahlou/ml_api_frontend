@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <Box w="full">
       <Center>
-        <VStack spacing={8} align="stretch" maxW="600px" w="full" pr="200px">
+        <VStack spacing={8} align="stretch" maxW="38%" w="full" >
           <Text fontSize="3xl" fontWeight="bold" textAlign="center">Churn Modeling Prediction Form</Text>
           <Divider borderColor="gray.200" />
           

@@ -1,10 +1,10 @@
-// src/components/Sidebar.jsx
-
 import React from 'react';
-import { Box, VStack, Button, Text, Divider } from '@chakra-ui/react';
+import { Box, VStack, Button, Text, Divider, useBreakpointValue } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
+  const display = useBreakpointValue({ base: 'none', md: 'block' });
+
   return (
     <Box
       w={{ base: 'full', md: '20%' }}
@@ -12,23 +12,23 @@ const Sidebar = () => {
       color="white"
       h="full"
       pt="50px"
-      pl={{ base: '20px', md: '70px' }}
-      pr={{ base: '20px', md: '200px' }}
-      borderRadius="md"
-      display="flex"
+      pl="10%"
+      pr="20%"
+      borderRadius="50px"
+      display={display}
       flexDirection="column"
       alignItems="flex-start"
-      m={15}
+      m="15px"
     >
       <VStack spacing={6} align="start" w="full">
         <Text fontSize="2xl" fontWeight="bold">Menu</Text>
-        <Button as={Link} to="/" variant="link" color="white" w="full" textAlign="left" mt="50px">Home</Button>
+        <Button as={Link} to="/" variant="link" color="white" w="full" textAlign="left" mt="50px" onClick={onClose}>Home</Button>
         <Divider borderColor="white" />
-        <Button as={Link} to="/data" variant="link" color="white" w="full" textAlign="left">Data</Button>
+        <Button as={Link} to="/data" variant="link" color="white" w="full" textAlign="left" onClick={onClose}>Data</Button>
         <Divider borderColor="white" />
-        <Button as={Link} to="/metric" variant="link" color="white" w="full" textAlign="left">Metric</Button>
+        <Button as={Link} to="/metric" variant="link" color="white" w="full" textAlign="left" onClick={onClose}>Metric</Button>
         <Divider borderColor="white" />
-        <Button as={Link} to="/contact" variant="link" color="white" w="full" textAlign="left">Contact</Button>
+        <Button as={Link} to="/contact" variant="link" color="white" w="full" textAlign="left" onClick={onClose}>Contact</Button>
       </VStack>
     </Box>
   );
