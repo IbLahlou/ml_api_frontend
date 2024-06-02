@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import ChatbotComponent from './components/Chatbot';
 
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
@@ -32,7 +33,10 @@ function App() {
   return (
     <ChakraProvider>
       <Router>
-        <Flex h="100vh" direction={{ base: 'column', md: 'row' }}>
+        <Flex 
+        h="100vh" 
+        direction={{ base: 'column', md: 'row' }}
+        bg = "#fafafa">
           {/* Hamburger Menu Button */}
           <IconButton
             icon={<HamburgerIcon />}
@@ -78,7 +82,11 @@ function App() {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </Box>
+          <Box position="fixed" bottom="16px" right="16px">
+        <ChatbotComponent />
+      </Box>
         </Flex>
+
       </Router>
     </ChakraProvider>
   );

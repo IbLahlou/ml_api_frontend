@@ -1,5 +1,3 @@
-// src/components/Chatbot.jsx
-
 import React from 'react';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
@@ -19,7 +17,11 @@ const ChatbotComponent = () => {
       border="1px solid"
       borderColor="gray.200"
     >
-      <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider} />
+      <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+      />
     </Box>
   );
 };

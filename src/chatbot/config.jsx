@@ -1,14 +1,14 @@
-// src/chatbot/config.jsx
-
 import { createChatBotMessage } from 'react-chatbot-kit';
 import React from 'react';
+import MessageParser from './MessageParser';
+import ActionProvider from './ActionProvider';
 
 const config = {
   botName: 'Chatbot',
   initialMessages: [createChatBotMessage(`Hi! I'm here to help you.`)],
   customStyles: {
     botMessageBox: {
-      backgroundColor: '#3182ce',
+      backgroundColor: '#121212',
       color: 'white',
       borderRadius: '12px',
       padding: '10px',
@@ -20,16 +20,20 @@ const config = {
       padding: '10px',
     },
     chatButton: {
-      backgroundColor: '#38b2ac',
+      backgroundColor: 'rgb(56, 75, 178)',
     },
   },
   customComponents: {
     header: () => (
-      <div style={{ backgroundColor: '#3182ce', padding: '10px', color: 'white', fontSize: '16px', fontWeight: 'bold' }}>
+      <div style={{ backgroundColor: '#121212', padding: '10px', color: 'white', fontSize: '16px', fontWeight: 'bold' }}>
         Conversation with Chatbot
       </div>
     ),
   },
+  state: {
+    messages: [],
+  },
+  widgets: [],
 };
 
 export default config;
