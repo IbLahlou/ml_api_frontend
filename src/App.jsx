@@ -63,7 +63,7 @@ function App() {
                 <Route path="/certifications" element={<Certifications />} />
                 <Route path="/activities" element={<Activities />} />
               </Routes>
-            </MotionBox>
+            </Box>
           </Flex>
 
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
