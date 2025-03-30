@@ -74,7 +74,16 @@ function App() {
             <Sidebar />
           </Box>
           {/* Main Content */}
-          <Box flex="1" ml={{ base: '0', md: '1%' }} p={8} overflowY="auto">
+          <Box
+  flex="1"
+  ml={{ base: '0', md: '1%' }}
+  p={8}
+  overflowY="auto"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  as={motion.div}
+>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/data" element={<Data />} />

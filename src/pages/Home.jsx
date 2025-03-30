@@ -1,7 +1,5 @@
-// src/pages/Home.jsx
-
 import React, { useState } from 'react';
-import axios from 'axios';
+import { motion } from 'framer-motion';
 import {
   VStack,
   Input,
@@ -17,7 +15,12 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Box,
+  useColorModeValue,
+  Container,
+  Heading,
+  ScaleFade,
 } from '@chakra-ui/react';
+import axios from 'axios';
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +38,7 @@ const Home = () => {
 
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
+  const bgColor = useColorModeValue('white', 'gray.800');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +50,6 @@ const Home = () => {
   };
 
   const handleSubmit = async () => {
-    // Convert formData to NumpyNdarray format
     const inputData = [
       formData.rowNumber,
       formData.customerId,
@@ -60,7 +63,6 @@ const Home = () => {
       formData.numOfProducts,
     ];
 
-    // Ensure all inputs are in the correct format for the model
     const numericData = inputData.map((item) => (isNaN(item) ? 0 : Number(item)));
 
     try {
@@ -79,87 +81,177 @@ const Home = () => {
   };
 
   return (
-    <Box w="full">
+    <Box as={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Center>
-        <VStack spacing={8} align="stretch" maxW="38%" w="full">
-          <Text fontSize="3xl" fontWeight="bold" textAlign="center">
-            Churn Modeling Prediction Form
-          </Text>
-          <Divider borderColor="gray.200" />
+        <VStack spacing={8} w="full" maxW="container.md">
+          <motion.div
+            initial={{ y: -20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Heading
+              fontSize="4xl"
+              bgGradient="linear(to-r, blue.400, purple.500)"
+              bgClip="text"
+              letterSpacing="tight"
+            >
+              Welcome to MLOps Dashboard
+            </Heading>
+          </motion.div>
 
-          <Text>Row Number</Text>
-          <Input name="rowNumber" placeholder="Enter Row Number" border="1px solid" onChange={handleChange} />
-
-          <Text>Customer ID</Text>
-          <Input name="customerId" placeholder="Enter Customer ID" border="1px solid" onChange={handleChange} />
-
-          <Text>Surname</Text>
-          <Input name="surname" placeholder="Enter Surname" border="1px solid" onChange={handleChange} />
-
-          <Text>Credit Score</Text>
-          <Box display="flex" alignItems="center">
-            <Slider flex="1" value={formData.creditScore} min={100} max={1000} step={10} onChange={handleSliderChange}>
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Box ml="4" fontSize="lg" width="70px">
+          <Box
+            as={motion.div}
+            whileHover={{ scale: 1.02 }}
+            p={8}
+            bg={bgColor}
+            boxShadow="xl"
+            rounded="lg"
+            w="full"
+          >
+            <VStack spacing={4}>
               <Input
-                type="number"
-                name="creditScore"
-                value={formData.creditScore}
-                min={100}
-                max={1000}
-                onChange={(e) => handleSliderChange(Number(e.target.value))}
-                border="1px solid"
+                placeholder="Row Number"
+                name="rowNumber"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
               />
-            </Box>
+              <Input
+                placeholder="Customer ID"
+                name="customerId"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Input
+                placeholder="Surname"
+                name="surname"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Input
+                placeholder="Age"
+                name="age"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Input
+                placeholder="Tenure"
+                name="tenure"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Input
+                placeholder="Balance"
+                name="balance"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Input
+                placeholder="Number of Products"
+                name="numOfProducts"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              />
+              <Box display="flex" alignItems="center">
+                <Slider flex="1" value={formData.creditScore} min={100} max={1000} step={10} onChange={handleSliderChange}>
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb />
+                </Slider>
+                <Box ml="4" fontSize="lg" width="70px">
+                  <Input
+                    type="number"
+                    name="creditScore"
+                    value={formData.creditScore}
+                    min={100}
+                    max={1000}
+                    onChange={(e) => handleSliderChange(Number(e.target.value))}
+                    border="1px solid"
+                  />
+                </Box>
+              </Box>
+              <Select
+                placeholder="Select Geography"
+                name="geography"
+                onChange={handleChange}
+                size="lg"
+                _hover={{ borderColor: 'blue.400' }}
+                transition="all 0.2s"
+              >
+                <option value="France">France</option>
+                <option value="Spain">Spain</option>
+                <option value="Germany">Germany</option>
+              </Select>
+              <RadioGroup name="gender" value={formData.gender} onChange={(value) => setFormData((prev) => ({ ...prev, gender: value }))}>
+                <VStack align="start">
+                  <Radio value="Male">Male</Radio>
+                  <Radio value="Female">Female</Radio>
+                </VStack>
+              </RadioGroup>
+
+              <Button
+                as={motion.button}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleSubmit}
+                bgGradient="linear(to-r, blue.400, purple.500)"
+                color="white"
+                size="lg"
+                w="full"
+                _hover={{
+                  bgGradient: "linear(to-r, blue.500, purple.600)",
+                }}
+              >
+                Analyze
+              </Button>
+            </VStack>
           </Box>
 
-          <Text>Geography</Text>
-          <Select name="geography" placeholder="Select Geography" border="1px solid" onChange={handleChange}>
-            <option value="France">France</option>
-            <option value="Spain">Spain</option>
-            <option value="Germany">Germany</option>
-          </Select>
-
-          <Text>Gender</Text>
-          <RadioGroup name="gender" defaultValue="Male" onChange={(value) => setFormData((prev) => ({ ...prev, gender: value }))}>
-            <VStack align="start">
-              <Radio value="Male">Male</Radio>
-              <Radio value="Female">Female</Radio>
-            </VStack>
-          </RadioGroup>
-
-          <Text>Age</Text>
-          <Input name="age" placeholder="Enter Age" border="1px solid" onChange={handleChange} />
-
-          <Text>Tenure</Text>
-          <Input name="tenure" placeholder="Enter Tenure" border="1px solid" onChange={handleChange} />
-
-          <Text>Balance</Text>
-          <Input name="balance" placeholder="Enter Balance" border="1px solid" onChange={handleChange} />
-
-          <Text>Number of Products</Text>
-          <Input name="numOfProducts" placeholder="Enter Number of Products" border="1px solid" onChange={handleChange} />
-
-          <Button colorScheme="blue" onClick={handleSubmit}>
-            Submit
-          </Button>
-          <Divider borderColor="gray.200" />
-
           {prediction && (
-            <Box mt="8" p="4" border="1px solid" borderColor="gray.200" borderRadius="md">
-              <Text fontSize="xl" fontWeight="bold">Prediction Result</Text>
-              <Text>{JSON.stringify(prediction)}</Text>
-            </Box>
+            <ScaleFade initialScale={0.9} in={true}>
+              <Box
+                p={6}
+                bg={bgColor}
+                boxShadow="xl"
+                rounded="lg"
+                w="full"
+                borderWidth="1px"
+                borderColor="blue.200"
+              >
+                <Text fontSize="xl" fontWeight="bold">Prediction Result</Text>
+                <Text>{JSON.stringify(prediction)}</Text>
+              </Box>
+            </ScaleFade>
           )}
-          
+
           {error && (
-            <Box mt="8" p="4" border="1px solid" borderColor="red.200" borderRadius="md" bg="red.50">
-              <Text color="red.500">{error}</Text>
-            </Box>
+            <ScaleFade initialScale={0.9} in={true}>
+              <Box
+                p={6}
+                bg="red.50"
+                boxShadow="xl"
+                rounded="lg"
+                w="full"
+                borderWidth="1px"
+                borderColor="red.200"
+              >
+                <Text color="red.500">{error}</Text>
+              </Box>
+            </ScaleFade>
           )}
         </VStack>
       </Center>
