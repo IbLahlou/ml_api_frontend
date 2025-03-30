@@ -2,8 +2,6 @@
 import React from 'react';
 import { Box, VStack, Text, Heading, IconButton, Container, SimpleGrid } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-
-const MotionBox = motion(Box);
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
