@@ -5,8 +5,7 @@ import 'react-chatbot-kit/build/main.css';
 import config from '../chatbot/config.jsx';
 import MessageParser from '../chatbot/MessageParser';
 import ActionProvider from '../chatbot/ActionProvider';
-import { Box, useColorModeValue } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { Box } from '@chakra-ui/react';
 
 const ChatbotComponent = () => {
   return (

@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Box, VStack, Text, Heading, IconButton, Container, SimpleGrid } from '@chakra-ui/react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Home = () => {
   return (
