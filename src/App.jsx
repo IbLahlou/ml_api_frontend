@@ -2,6 +2,8 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChakraProvider, Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Flex } from '@chakra-ui/react';
+
+const MotionBox = motion(Box);
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HamburgerIcon, ChatIcon } from '@chakra-ui/icons';
 import ChatbotComponent from './components/Chatbot';
