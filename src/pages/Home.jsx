@@ -1,167 +1,17 @@
-
 import React from 'react';
-import { Box, VStack, Text, Button, Image, Grid, Link, Icon, Flex } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  Button,
+  Image,
+  Flex,
+  Grid,
+  Link,
+  IconButton
+} from '@chakra-ui/react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaBlog } from 'react-icons/fa';
-
-const MotionBox = motion(Box);
-
-const Home = () => {
-  return (
-    <Box p={8} bg="#1a1b1e" minH="100vh" color="white">
-      <VStack spacing={12} align="stretch" maxW="1200px" mx="auto">
-        {/* Hero Section */}
-        <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" gap={8}>
-          <VStack align="flex-start" spacing={4}>
-            <Text fontSize="5xl" fontWeight="bold">
-              Hi, I'm Eddaou Issam
-            </Text>
-            <Text fontSize="xl" color="gray.400">
-              Data Engineer & Software Developer
-            </Text>
-            <Button
-              as={Link}
-              href="https://github.com/yourusername"
-              target="_blank"
-              colorScheme="purple"
-              size="lg"
-              leftIcon={<FaGithub />}
-            >
-              Connect with me
-            </Button>
-          </VStack>
-          <Image
-            src="/avatar.png"
-            alt="Profile"
-            boxSize="200px"
-            borderRadius="full"
-            bg="purple.500"
-          />
-        </Flex>
-
-        {/* About Section */}
-        <VStack align="flex-start" spacing={4}>
-          <Text fontSize="3xl" fontWeight="bold">About Me</Text>
-          <Text color="gray.400">
-            Data Engineer specializing in building robust data pipelines and scalable solutions.
-            I have expertise in Python, SQL, and cloud technologies.
-          </Text>
-          <Button colorScheme="purple" variant="outline">
-            Download CV
-          </Button>
-        </VStack>
-
-        {/* Projects Section */}
-        <VStack align="flex-start" spacing={6}>
-          <Text fontSize="3xl" fontWeight="bold">Projects</Text>
-          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} w="100%">
-            {projects.map((project, index) => (
-              <MotionBox
-                key={index}
-                bg="#2a2b2e"
-                p={6}
-                borderRadius="xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <VStack align="flex-start" spacing={4}>
-                  <Text fontSize="xl" fontWeight="bold">{project.title}</Text>
-                  <Text color="gray.400">{project.description}</Text>
-                  <Flex gap={2}>
-                    <Button
-                      as={Link}
-                      href={project.repo}
-                      target="_blank"
-                      size="sm"
-                      leftIcon={<FaGithub />}
-                      colorScheme="purple"
-                    >
-                      Repository
-                    </Button>
-                    <Button
-                      as={Link}
-                      href={project.demo}
-                      target="_blank"
-                      size="sm"
-                      colorScheme="purple"
-                      variant="outline"
-                    >
-                      Live Demo
-                    </Button>
-                  </Flex>
-                </VStack>
-              </MotionBox>
-            ))}
-          </Grid>
-        </VStack>
-
-        {/* Blog Section */}
-        <VStack align="flex-start" spacing={6}>
-          <Text fontSize="3xl" fontWeight="bold">Latest Blog Posts</Text>
-          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} w="100%">
-            {blogPosts.map((post, index) => (
-              <MotionBox
-                key={index}
-                bg="#2a2b2e"
-                p={6}
-                borderRadius="xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <VStack align="flex-start" spacing={4}>
-                  <Text fontSize="xl" fontWeight="bold">{post.title}</Text>
-                  <Text color="gray.400" noOfLines={2}>{post.excerpt}</Text>
-                  <Button
-                    as={Link}
-                    href={post.link}
-                    target="_blank"
-                    size="sm"
-                    rightIcon={<FaBlog />}
-                    colorScheme="purple"
-                    variant="ghost"
-                  >
-                    Read More
-                  </Button>
-                </VStack>
-              </MotionBox>
-            ))}
-          </Grid>
-        </VStack>
-
-        {/* Social Links */}
-        <Flex gap={4} justify="center" pt={8}>
-          <IconButton
-            as={Link}
-            href="https://github.com/yourusername"
-            target="_blank"
-            icon={<FaGithub />}
-            colorScheme="purple"
-            variant="ghost"
-            fontSize="24px"
-          />
-          <IconButton
-            as={Link}
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            icon={<FaLinkedin />}
-            colorScheme="purple"
-            variant="ghost"
-            fontSize="24px"
-          />
-          <IconButton
-            as={Link}
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            icon={<FaTwitter />}
-            colorScheme="purple"
-            variant="ghost"
-            fontSize="24px"
-          />
-        </Flex>
-      </VStack>
-    </Box>
-  );
-};
 
 const projects = [
   {
@@ -190,5 +40,104 @@ const blogPosts = [
     link: "/blog/best-practices"
   }
 ];
+
+const Home = () => {
+  const MotionBox = motion(Box);
+
+  return (
+    <Box p={8} bg="#1a1b1e" minH="100vh" color="white">
+      <VStack spacing={12} align="stretch" maxW="1200px" mx="auto">
+        <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" gap={8}>
+          <VStack align="flex-start" spacing={4}>
+            <Text fontSize="5xl" fontWeight="bold">
+              Hi, I'm Eddaou Issam
+            </Text>
+            <Text fontSize="xl" color="gray.400">
+              Data Engineer & Software Developer
+            </Text>
+            <Button
+              as="a"
+              href="https://github.com/yourusername"
+              target="_blank"
+              colorScheme="purple"
+              size="lg"
+              leftIcon={<FaGithub />}
+            >
+              Connect with me
+            </Button>
+          </VStack>
+          <Image
+            src="/avatar.png"
+            alt="Profile"
+            boxSize="200px"
+            borderRadius="full"
+            bg="purple.500"
+          />
+        </Flex>
+
+        <VStack spacing={6} align="stretch">
+          <Text fontSize="2xl" fontWeight="bold">Projects</Text>
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+            {projects.map((project, index) => (
+              <MotionBox
+                key={index}
+                p={6}
+                bg="#2c2e33"
+                borderRadius="lg"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <VStack align="stretch" spacing={4}>
+                  <Text fontSize="xl" fontWeight="bold">{project.title}</Text>
+                  <Text color="gray.400">{project.description}</Text>
+                  <Flex gap={4}>
+                    <IconButton
+                      as="a"
+                      href={project.repo}
+                      target="_blank"
+                      icon={<FaGithub />}
+                      aria-label="GitHub"
+                    />
+                    <IconButton
+                      as="a"
+                      href={project.demo}
+                      target="_blank"
+                      icon={<FaExternalLinkAlt />}
+                      aria-label="Demo"
+                    />
+                  </Flex>
+                </VStack>
+              </MotionBox>
+            ))}
+          </Grid>
+        </VStack>
+
+        <VStack spacing={6} align="stretch">
+          <Text fontSize="2xl" fontWeight="bold">Blog Posts</Text>
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+            {blogPosts.map((post, index) => (
+              <MotionBox
+                key={index}
+                p={6}
+                bg="#2c2e33"
+                borderRadius="lg"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                as={Link}
+                href={post.link}
+                _hover={{ textDecoration: 'none' }}
+              >
+                <VStack align="stretch" spacing={4}>
+                  <Text fontSize="xl" fontWeight="bold">{post.title}</Text>
+                  <Text color="gray.400">{post.excerpt}</Text>
+                </VStack>
+              </MotionBox>
+            ))}
+          </Grid>
+        </VStack>
+      </VStack>
+    </Box>
+  );
+};
 
 export default Home;

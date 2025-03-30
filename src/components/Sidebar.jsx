@@ -3,59 +3,54 @@ import React from 'react';
 import { Box, VStack, Button, Text, Flex, Icon } from '@chakra-ui/react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaHome, FaDatabase, FaChartBar, FaEnvelope } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Sidebar = ({ onClose }) => {
   const location = useLocation();
+  const MotionFlex = motion(Flex);
 
-  const MenuItem = ({ icon, children, to }) => {
-    const isActive = location.pathname === to;
-    return (
-      <Button
-        as={Link}
-        to={to}
-        variant="ghost"
-        color="gray.300"
-        w="full"
-        justifyContent="flex-start"
-        pl={4}
-        py={6}
-        borderRadius="0"
-        backgroundColor={isActive ? "rgba(255, 255, 255, 0.1)" : "transparent"}
-        _hover={{
-          backgroundColor: "rgba(255, 255, 255, 0.05)",
-          color: "white"
-        }}
-        leftIcon={<Icon as={icon} boxSize={5} />}
-        onClick={onClose}
-      >
-        {children}
-      </Button>
-    );
-  };
+  const menuItems = [
+    { icon: FaHome, text: 'Home', path: '/' },
+    { icon: FaDatabase, text: 'Data', path: '/data' },
+    { icon: FaChartBar, text: 'Metrics', path: '/metric' },
+    { icon: FaEnvelope, text: 'Contact', path: '/contact' },
+  ];
 
   return (
     <Box
-      w={{ base: 'full', md: '240px' }}
-      bg="#1E2124"
-      h="100vh"
-      position="fixed"
-      left={0}
-      top={0}
+      h="100%"
+      bg="#2c2e33"
+      w="250px"
+      p={4}
       borderRight="1px solid"
       borderColor="rgba(255, 255, 255, 0.1)"
     >
-      <Flex direction="column" h="full">
-        <Box p={4} borderBottom="1px solid" borderColor="rgba(255, 255, 255, 0.1)">
-          <Text fontSize="lg" fontWeight="bold" color="white">Menu</Text>
-        </Box>
-        
-        <VStack spacing={0} align="stretch" flex={1}>
-          <MenuItem icon={FaHome} to="/">Home</MenuItem>
-          <MenuItem icon={FaDatabase} to="/data">Data</MenuItem>
-          <MenuItem icon={FaChartBar} to="/metric">Metric</MenuItem>
-          <MenuItem icon={FaEnvelope} to="/contact">Contact</MenuItem>
+      <VStack spacing={8} align="stretch">
+        <Text fontSize="xl" fontWeight="bold" p={4}>
+          MLOps Dashboard
+        </Text>
+        <VStack spacing={2} align="stretch">
+          {menuItems.map((item) => (
+            <MotionFlex
+              key={item.path}
+              as={Link}
+              to={item.path}
+              p={3}
+              align="center"
+              borderRadius="md"
+              bg={location.pathname === item.path ? '#3a3d44' : 'transparent'}
+              color={location.pathname === item.path ? 'white' : 'gray.400'}
+              onClick={onClose}
+              whileHover={{ backgroundColor: '#3a3d44' }}
+              transition={{ duration: 0.2 }}
+              _hover={{ textDecoration: 'none' }}
+            >
+              <Icon as={item.icon} mr={3} />
+              <Text>{item.text}</Text>
+            </MotionFlex>
+          ))}
         </VStack>
-      </Flex>
+      </VStack>
     </Box>
   );
 };
