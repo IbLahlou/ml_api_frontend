@@ -1,29 +1,18 @@
-
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ChakraProvider,
-  Box,
-  IconButton,
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  useDisclosure,
-  Flex,
-  VStack,
-  Button,
-} from '@chakra-ui/react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { ChakraProvider, Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Flex } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HamburgerIcon, ChatIcon } from '@chakra-ui/icons';
 import ChatbotComponent from './components/Chatbot';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
-import Data from './pages/Data';
-import Metric from './pages/Metric';
+import Projects from './pages/Projects';
+import Blog from './pages/Blog';
+import Articles from './pages/Articles';
 import Contact from './pages/Contact';
+import Experience from './pages/Experience';
+import Certifications from './pages/Certifications';
+import Activities from './pages/Activities';
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,8 +23,7 @@ function App() {
     <ChakraProvider>
       <Router>
         <Box minH="100vh" bg="#1a1b1e">
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            {/* Mobile Menu Button */}
+          <Flex>
             <IconButton
               icon={<HamburgerIcon />}
               display={{ base: 'block', md: 'none' }}
@@ -49,65 +37,50 @@ function App() {
               variant="ghost"
             />
 
-            {/* Mobile Drawer */}
             <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
               <DrawerOverlay />
               <DrawerContent bg="#1E2124" color="white">
-                <DrawerCloseButton color="gray.400" />
-                <DrawerHeader borderBottomWidth="1px" borderColor="rgba(255, 255, 255, 0.1)">Menu</DrawerHeader>
-                <DrawerBody p={0}>
+                <DrawerCloseButton />
+                <DrawerHeader>Navigation</DrawerHeader>
+                <DrawerBody>
                   <Sidebar onClose={onClose} />
                 </DrawerBody>
               </DrawerContent>
             </Drawer>
 
-            {/* Desktop Sidebar */}
-            <Box display={{ base: 'none', md: 'block' }} minW="250px" position="fixed" h="100vh">
+            <Box display={{ base: 'none', md: 'block' }} minW="250px" h="100vh">
               <Sidebar />
             </Box>
 
-            {/* Main Content */}
-            <Box
-              as={motion.div}
-              flex="1"
-              ml={{ base: 0, md: '250px' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
+            <Box as={motion.div} flex="1" p={4} ml={{ base: 0, md: '250px' }}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/data" element={<Data />} />
-                <Route path="/metric" element={<Metric />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/articles" element={<Articles />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/experience" element={<Experience />} />
+                <Route path="/certifications" element={<Certifications />} />
+                <Route path="/activities" element={<Activities />} />
               </Routes>
             </Box>
           </Flex>
 
-          {/* Floating Chat Button & Chat Window */}
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
             <AnimatePresence>
-              {isChatOpen ? (
+              {isChatOpen && (
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
-                  style={{ transformOrigin: 'bottom right' }}
                 >
-                  <Box
-                    bg="#2c2e33"
-                    borderRadius="lg"
-                    boxShadow="dark-lg"
-                    overflow="hidden"
-                    maxW="350px"
-                    maxH="500px"
-                  >
+                  <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
                     <ChatbotComponent />
                   </Box>
                 </motion.div>
-              ) : null}
+              )}
             </AnimatePresence>
-            
+
             <IconButton
               icon={<ChatIcon />}
               onClick={() => setIsChatOpen(!isChatOpen)}
@@ -115,10 +88,7 @@ function App() {
               size="lg"
               rounded="full"
               shadow="lg"
-              position="relative"
-              zIndex={2}
               ml="auto"
-              display="block"
             />
           </Box>
         </Box>
