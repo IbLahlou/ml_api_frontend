@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Box, VStack, Text, Heading, IconButton, Image, Container, SimpleGrid } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { Box, VStack, Text, Heading, IconButton, Container, SimpleGrid } from '@chakra-ui/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
@@ -51,24 +51,27 @@ const Home = () => {
         <Box mt={8}>
           <SimpleGrid columns={3} spacing={4}>
             <IconButton
-              as={motion.button}
-              whileHover={{ scale: 1.1 }}
+              as="a"
+              href="https://github.com/yourusername"
+              target="_blank"
               icon={<FaGithub />}
               aria-label="Github"
               size="lg"
               variant="ghost"
             />
             <IconButton
-              as={motion.button}
-              whileHover={{ scale: 1.1 }}
+              as="a"
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
               icon={<FaLinkedin />}
               aria-label="LinkedIn"
               size="lg"
               variant="ghost"
             />
             <IconButton
-              as={motion.button}
-              whileHover={{ scale: 1.1 }}
+              as="a"
+              href="https://twitter.com/yourusername"
+              target="_blank"
               icon={<FaTwitter />}
               aria-label="Twitter"
               size="lg"
