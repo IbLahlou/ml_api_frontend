@@ -3,86 +3,65 @@ import {
   Box,
   VStack,
   Text,
-  Button,
-  Image,
-  Flex,
   Grid,
   Link,
-  IconButton
+  Flex,
+  Icon,
+  Button,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const projects = [
-  {
-    title: "Data Pipeline Framework",
-    description: "A robust ETL framework for handling large-scale data processing",
-    repo: "https://github.com/yourusername/data-pipeline",
-    demo: "https://demo-link.com"
-  },
-  {
-    title: "Analytics Dashboard",
-    description: "Real-time analytics dashboard built with React and D3.js",
-    repo: "https://github.com/yourusername/analytics-dashboard",
-    demo: "https://demo-link.com"
-  }
-];
-
-const blogPosts = [
-  {
-    title: "Building Scalable Data Pipelines",
-    excerpt: "Learn how to design and implement scalable data pipelines using modern tools and best practices.",
-    link: "/blog/scalable-pipelines"
-  },
-  {
-    title: "Data Engineering Best Practices",
-    excerpt: "A comprehensive guide to data engineering best practices and patterns.",
-    link: "/blog/best-practices"
-  }
-];
+const MotionBox = motion(Box);
 
 const Home = () => {
-  const MotionBox = motion(Box);
+  const cardBg = "#2c2e33";
+
+  const projects = [
+    {
+      title: "MLOps Pipeline",
+      description: "End-to-end MLOps pipeline for model deployment and monitoring",
+      repo: "https://github.com/yourusername/mlops-pipeline",
+      demo: "https://demo-link.com"
+    },
+    {
+      title: "Data Engineering Framework",
+      description: "Scalable data processing framework with real-time analytics",
+      repo: "https://github.com/yourusername/data-framework",
+      demo: "https://demo-link.com"
+    }
+  ];
 
   return (
-    <Box p={8} bg="#1a1b1e" minH="100vh" color="white">
-      <VStack spacing={12} align="stretch" maxW="1200px" mx="auto">
-        <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" gap={8}>
-          <VStack align="flex-start" spacing={4}>
-            <Text fontSize="5xl" fontWeight="bold">
-              Hi, I'm Eddaou Issam
-            </Text>
-            <Text fontSize="xl" color="gray.400">
-              Data Engineer & Software Developer
-            </Text>
-            <Button
-              as="a"
-              href="https://github.com/yourusername"
-              target="_blank"
-              colorScheme="purple"
-              size="lg"
-              leftIcon={<FaGithub />}
-            >
-              Connect with me
-            </Button>
-          </VStack>
-          <Image
-            src="/avatar.png"
-            alt="Profile"
-            boxSize="200px"
-            borderRadius="full"
-            bg="purple.500"
-          />
-        </Flex>
+    <Box p={8} color="gray.100">
+      <VStack spacing={12} align="stretch">
+        <VStack spacing={4} align="stretch">
+          <Text fontSize="4xl" fontWeight="bold">Welcome to My Portfolio</Text>
+          <Text fontSize="xl" color="gray.400">
+            Senior Data Engineer & MLOps Specialist
+          </Text>
+          <Flex gap={4}>
+            <Link href="https://github.com/yourusername" isExternal>
+              <Icon as={FaGithub} w={6} h={6} />
+            </Link>
+            <Link href="https://linkedin.com/in/yourusername" isExternal>
+              <Icon as={FaLinkedin} w={6} h={6} />
+            </Link>
+            <Link href="https://twitter.com/yourusername" isExternal>
+              <Icon as={FaTwitter} w={6} h={6} />
+            </Link>
+          </Flex>
+        </VStack>
 
         <VStack spacing={6} align="stretch">
-          <Text fontSize="2xl" fontWeight="bold">Projects</Text>
+          <Text fontSize="2xl" fontWeight="bold">Featured Projects</Text>
           <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
             {projects.map((project, index) => (
               <MotionBox
                 key={index}
                 p={6}
-                bg="#2c2e33"
+                bg={cardBg}
                 borderRadius="lg"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
@@ -91,20 +70,16 @@ const Home = () => {
                   <Text fontSize="xl" fontWeight="bold">{project.title}</Text>
                   <Text color="gray.400">{project.description}</Text>
                   <Flex gap={4}>
-                    <IconButton
-                      as="a"
-                      href={project.repo}
-                      target="_blank"
-                      icon={<FaGithub />}
-                      aria-label="GitHub"
-                    />
-                    <IconButton
-                      as="a"
-                      href={project.demo}
-                      target="_blank"
-                      icon={<FaExternalLinkAlt />}
-                      aria-label="Demo"
-                    />
+                    <Link href={project.repo} isExternal>
+                      <Button size="sm" leftIcon={<FaGithub />}>
+                        Code
+                      </Button>
+                    </Link>
+                    <Link href={project.demo} isExternal>
+                      <Button size="sm" leftIcon={<FaExternalLinkAlt />}>
+                        Demo
+                      </Button>
+                    </Link>
                   </Flex>
                 </VStack>
               </MotionBox>
@@ -113,27 +88,14 @@ const Home = () => {
         </VStack>
 
         <VStack spacing={6} align="stretch">
-          <Text fontSize="2xl" fontWeight="bold">Blog Posts</Text>
-          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
-            {blogPosts.map((post, index) => (
-              <MotionBox
-                key={index}
-                p={6}
-                bg="#2c2e33"
-                borderRadius="lg"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-                as={Link}
-                href={post.link}
-                _hover={{ textDecoration: 'none' }}
-              >
-                <VStack align="stretch" spacing={4}>
-                  <Text fontSize="xl" fontWeight="bold">{post.title}</Text>
-                  <Text color="gray.400">{post.excerpt}</Text>
-                </VStack>
-              </MotionBox>
-            ))}
-          </Grid>
+          <Text fontSize="2xl" fontWeight="bold">About Me</Text>
+          <Box p={6} bg={cardBg} borderRadius="lg">
+            <Text color="gray.400">
+              I'm a passionate Data Engineer and MLOps specialist with extensive experience in building scalable data pipelines
+              and deploying machine learning models to production. I specialize in creating efficient, maintainable, and
+              robust data infrastructure that drives business value.
+            </Text>
+          </Box>
         </VStack>
       </VStack>
     </Box>
