@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import {
   ChakraProvider,
@@ -11,10 +10,13 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Flex
+  Flex,
+  useColorMode,
+  Button,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HamburgerIcon, ChatIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, ChatIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import ChatbotComponent from './components/Chatbot';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
@@ -30,11 +32,12 @@ function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const btnRef = useRef();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <ChakraProvider>
       <Router>
-        <Box minH="100vh" bg="#1a1b1e">
+        <Box minH="100vh" bg={useColorModeValue('#f0f0f0', '#1a1b1e')}> {/* Added colorModeValue for background */}
           <Flex>
             <IconButton
               icon={<HamburgerIcon />}
@@ -51,7 +54,7 @@ function App() {
 
             <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
               <DrawerOverlay />
-              <DrawerContent bg="#1E2124" color="white">
+              <DrawerContent bg={useColorModeValue('#f0f0f0', '#1E2124')} color={useColorModeValue('black', 'white')}>
                 <DrawerCloseButton />
                 <DrawerHeader>Navigation</DrawerHeader>
                 <DrawerBody>
@@ -81,7 +84,7 @@ function App() {
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
             {isChatOpen && (
               <Box opacity={1} transition="all 0.2s">
-                <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
+                <Box bg={useColorModeValue('#fff', '#2c2e33')} borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
                   <ChatbotComponent />
                 </Box>
               </Box>
@@ -97,6 +100,9 @@ function App() {
               ml="auto"
             />
           </Box>
+          <Button onClick={toggleColorMode} pos="fixed" top="4" right="4" zIndex="overlay">
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          </Button>
         </Box>
       </Router>
     </ChakraProvider>
