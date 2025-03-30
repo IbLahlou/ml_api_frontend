@@ -1,6 +1,18 @@
 
 import React, { useRef, useState } from 'react';
-import { ChakraProvider, Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Flex } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  Box,
+  IconButton,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Flex
+} from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HamburgerIcon, ChatIcon } from '@chakra-ui/icons';
 import ChatbotComponent from './components/Chatbot';
@@ -68,15 +80,12 @@ function App() {
 
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
             {isChatOpen && (
-                <Box
-                  opacity={1}
-                  transition="all 0.2s"
-                >
-                  <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
-                    <ChatbotComponent />
-                  </Box>
+              <Box opacity={1} transition="all 0.2s">
+                <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
+                  <ChatbotComponent />
                 </Box>
-              )}
+              </Box>
+            )}
 
             <IconButton
               icon={<ChatIcon />}
