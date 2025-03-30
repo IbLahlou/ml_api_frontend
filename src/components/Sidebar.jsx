@@ -7,16 +7,17 @@ const Sidebar = ({ onClose }) => {
 
   return (
     <Box
-      w={{ base: 'full', md: '20%' }}
-      bg="#121212"
+      w={{ base: 'full', md: '250px' }}
+      bg="#2c2e33"
       color="white"
       h="full"
-      pt="50px"
-      pl="10%"
-      pr="20%"
+      py="24px"
+      px="16px"
       display={display}
       flexDirection="column"
       alignItems="flex-start"
+      borderRight="1px solid"
+      borderColor="rgba(255, 255, 255, 0.1)"
     >
       <VStack spacing={6} align="start" w="full">
         <Text fontSize="2xl" fontWeight="bold">Menu</Text>

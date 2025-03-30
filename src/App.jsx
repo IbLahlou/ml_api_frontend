@@ -37,7 +37,7 @@ function App() {
         <Flex 
         h="100vh" 
         direction={{ base: 'column', md: 'row' }}
-        bg = "#fafafa">
+        bg = "#1a1b1e">
           {/* Hamburger Menu Button */}
           <IconButton
             icon={<HamburgerIcon />}
