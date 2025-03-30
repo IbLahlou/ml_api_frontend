@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChakraProvider, Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Flex } from '@chakra-ui/react';
@@ -13,6 +14,8 @@ import Contact from './pages/Contact';
 import Experience from './pages/Experience';
 import Certifications from './pages/Certifications';
 import Activities from './pages/Activities';
+
+const MotionBox = motion(Box);
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,7 +55,7 @@ function App() {
               <Sidebar />
             </Box>
 
-            <Box as={motion.div} flex="1" p={4} ml={{ base: 0, md: '250px' }}>
+            <MotionBox flex="1" p={4} ml={{ base: 0, md: '250px' }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
@@ -63,13 +66,13 @@ function App() {
                 <Route path="/certifications" element={<Certifications />} />
                 <Route path="/activities" element={<Activities />} />
               </Routes>
-            </Box>
+            </MotionBox>
           </Flex>
 
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
             <AnimatePresence>
               {isChatOpen && (
-                <motion.div
+                <MotionBox
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
@@ -77,7 +80,7 @@ function App() {
                   <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
                     <ChatbotComponent />
                   </Box>
-                </motion.div>
+                </MotionBox>
               )}
             </AnimatePresence>
 
