@@ -8,25 +8,32 @@ const config = {
   initialMessages: [createChatBotMessage(`Hi! I'm here to help you.`)],
   customStyles: {
     botMessageBox: {
-      backgroundColor: '#121212',
+      backgroundColor: '#3a3d44',
       color: 'white',
-      borderRadius: '12px',
-      padding: '10px',
+      borderRadius: '8px',
+      padding: '12px',
     },
     userMessageBox: {
-      backgroundColor: '#e2e8f0',
-      color: 'black',
-      borderRadius: '12px',
-      padding: '10px',
+      backgroundColor: '#3182ce',
+      color: 'white',
+      borderRadius: '8px',
+      padding: '12px',
     },
     chatButton: {
-      backgroundColor: 'rgb(56, 75, 178)',
+      backgroundColor: '#3182ce',
     },
   },
   customComponents: {
     header: () => (
-      <div style={{ backgroundColor: '#121212', padding: '10px', color: 'white', fontSize: '16px', fontWeight: 'bold' }}>
-        Conversation with Chatbot
+      <div style={{ 
+        backgroundColor: '#2c2e33', 
+        padding: '16px', 
+        color: 'white', 
+        fontSize: '16px', 
+        fontWeight: 'bold',
+        borderBottom: '1px solid rgba(255,255,255,0.1)'
+      }}>
+        Chat Assistant
       </div>
     ),
   },
