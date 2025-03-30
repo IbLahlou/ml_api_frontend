@@ -76,7 +76,6 @@ function App() {
               as={motion.div}
               flex="1"
               ml={{ base: 0, md: '250px' }}
-              p={{ base: 4, md: 8 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
