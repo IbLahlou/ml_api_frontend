@@ -17,8 +17,6 @@ import Experience from './pages/Experience';
 import Certifications from './pages/Certifications';
 import Activities from './pages/Activities';
 
-const MotionBox = motion(Box);
-
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isChatOpen, setIsChatOpen] = useState(false);
