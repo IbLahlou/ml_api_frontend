@@ -52,16 +52,11 @@ function App() {
             {/* Mobile Drawer */}
             <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
               <DrawerOverlay />
-              <DrawerContent bg="#2c2e33" color="white">
-                <DrawerCloseButton />
-                <DrawerHeader>Menu</DrawerHeader>
-                <DrawerBody>
-                  <VStack spacing={4} align="start">
-                    <Button as={Link} to="/" onClick={onClose} variant="ghost" w="full" color="white">Home</Button>
-                    <Button as={Link} to="/data" onClick={onClose} variant="ghost" w="full" color="white">Data</Button>
-                    <Button as={Link} to="/metric" onClick={onClose} variant="ghost" w="full" color="white">Metric</Button>
-                    <Button as={Link} to="/contact" onClick={onClose} variant="ghost" w="full" color="white">Contact</Button>
-                  </VStack>
+              <DrawerContent bg="#1E2124" color="white">
+                <DrawerCloseButton color="gray.400" />
+                <DrawerHeader borderBottomWidth="1px" borderColor="rgba(255, 255, 255, 0.1)">Menu</DrawerHeader>
+                <DrawerBody p={0}>
+                  <Sidebar onClose={onClose} />
                 </DrawerBody>
               </DrawerContent>
             </Drawer>
