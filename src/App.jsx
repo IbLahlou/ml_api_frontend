@@ -1,9 +1,6 @@
 
 import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChakraProvider, Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Flex } from '@chakra-ui/react';
-
-const MotionBox = motion(Box);
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HamburgerIcon, ChatIcon } from '@chakra-ui/icons';
 import ChatbotComponent from './components/Chatbot';
@@ -55,7 +52,7 @@ function App() {
               <Sidebar />
             </Box>
 
-            <MotionBox flex="1" p={4} ml={{ base: 0, md: '250px' }}>
+            <Box flex="1" p={4} ml={{ base: 0, md: '250px' }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
@@ -70,19 +67,16 @@ function App() {
           </Flex>
 
           <Box position="fixed" bottom="4" right="4" zIndex="overlay">
-            <AnimatePresence>
-              {isChatOpen && (
-                <MotionBox
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
+            {isChatOpen && (
+                <Box
+                  opacity={1}
+                  transition="all 0.2s"
                 >
                   <Box bg="#2c2e33" borderRadius="lg" boxShadow="dark-lg" maxW="350px" maxH="500px">
                     <ChatbotComponent />
                   </Box>
-                </MotionBox>
+                </Box>
               )}
-            </AnimatePresence>
 
             <IconButton
               icon={<ChatIcon />}

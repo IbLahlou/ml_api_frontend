@@ -1,38 +1,25 @@
-
 import React from 'react';
 import { Box, VStack, Text, Heading, IconButton, Container, SimpleGrid } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-
-const MotionBox = motion(Box);
 
 const Home = () => {
   return (
     <Container maxW="container.lg" py={10}>
       <VStack spacing={8} align="stretch">
-        <MotionBox
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <Box>
           <Heading as="h1" size="2xl" mb={4}>
             Welcome to My Portfolio
           </Heading>
           <Text fontSize="xl" color="gray.500">
             MLOps Engineer & Data Scientist
           </Text>
-        </MotionBox>
+        </Box>
 
-        <MotionBox
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <Box>
           <Text fontSize="lg">
             I specialize in MLOps and Data Science, focusing on building and deploying machine learning models at scale.
             My expertise includes model deployment, monitoring, and optimization of ML pipelines.
           </Text>
-        </MotionBox>
+        </Box>
 
         <Box mt={8}>
           <SimpleGrid columns={3} spacing={4}>
