@@ -1,64 +1,45 @@
-
 import React from 'react';
-import { Box, Heading, VStack, Text, Divider, Badge } from '@chakra-ui/react';
+import { Box, VStack, Text, Container, Heading, Divider } from '@chakra-ui/react';
 
 const Experience = () => {
   const experiences = [
     {
-      role: "MLOps Engineer",
-      company: "AI Solutions Inc.",
-      period: "2022 - Present",
-      responsibilities: [
-        "Developed and maintained ML model deployment pipelines",
-        "Implemented monitoring solutions for production ML models",
-        "Automated model retraining workflows"
-      ],
-      technologies: ["Kubernetes", "TensorFlow", "PyTorch", "MLflow"]
+      title: "Senior MLOps Engineer",
+      company: "Tech Company",
+      period: "2021 - Present",
+      description: "Leading ML infrastructure development and deployment automation."
     },
     {
-      role: "Machine Learning Engineer",
-      company: "Data Science Corp",
-      period: "2020 - 2022",
-      responsibilities: [
-        "Built and deployed machine learning models",
-        "Optimized model performance and inference time",
-        "Collaborated with data scientists on model development"
-      ],
-      technologies: ["Python", "Scikit-learn", "Docker", "AWS"]
+      title: "Data Scientist",
+      company: "AI Startup",
+      period: "2019 - 2021",
+      description: "Developed and deployed machine learning models for production."
+    },
+    {
+      title: "Software Engineer",
+      company: "Software Corp",
+      period: "2017 - 2019",
+      description: "Full-stack development with focus on backend systems."
     }
   ];
 
   return (
-    <Box p={8}>
-      <Heading mb={6}>Professional Experience</Heading>
-      <VStack spacing={6} align="stretch">
+    <Container maxW="container.md" p={8}>
+      <VStack spacing={8} align="stretch">
+        <Heading>Professional Experience</Heading>
         {experiences.map((exp, index) => (
-          <Box key={index} p={5} bg="#2c2e33" borderRadius="lg">
-            <Heading size="md">{exp.role}</Heading>
-            <Text color="blue.400" mb={2}>{exp.company} | {exp.period}</Text>
-            <Divider mb={4} />
-            <VStack align="start" spacing={4}>
-              <Box>
-                <Text fontWeight="bold" mb={2}>Key Responsibilities:</Text>
-                <VStack align="start" spacing={1}>
-                  {exp.responsibilities.map((resp, idx) => (
-                    <Text key={idx}>• {resp}</Text>
-                  ))}
-                </VStack>
-              </Box>
-              <Box>
-                <Text fontWeight="bold" mb={2}>Technologies:</Text>
-                {exp.technologies.map((tech, idx) => (
-                  <Badge key={idx} mr={2} mb={2} colorScheme="blue">
-                    {tech}
-                  </Badge>
-                ))}
-              </Box>
-            </VStack>
+          <Box key={index} p={6} bg="#2c2e33" borderRadius="lg">
+            <Text fontSize="xl" fontWeight="bold" color="blue.400">
+              {exp.title}
+            </Text>
+            <Text fontSize="lg" color="gray.300">{exp.company}</Text>
+            <Text fontSize="md" color="gray.500" mb={4}>{exp.period}</Text>
+            <Text color="gray.400">{exp.description}</Text>
+            {index < experiences.length - 1 && <Divider mt={4} />}
           </Box>
         ))}
       </VStack>
-    </Box>
+    </Container>
   );
 };
 

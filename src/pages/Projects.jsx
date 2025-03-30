@@ -1,10 +1,7 @@
 
 import React from 'react';
-import { VStack, Text, Grid, Link, Button, Container } from '@chakra-ui/react';
+import { VStack, Text, Grid, Link, Button, Container, Box, Flex } from '@chakra-ui/react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-
-const MotionBox = motion(Box);
 
 const Projects = () => {
   const cardBg = "#2c2e33";
@@ -38,12 +35,13 @@ const Projects = () => {
         <Text fontSize="2xl" fontWeight="bold">Featured Projects</Text>
         <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
           {projects.map((project, index) => (
-            <MotionBox
+            <Box
               key={index}
               p={6}
               bg={cardBg}
               borderRadius="lg"
-              whileHover={{ scale: 1.02 }}
+              transition="transform 0.2s"
+              _hover={{ transform: 'scale(1.02)' }}
             >
               <VStack align="stretch" spacing={4}>
                 <Text fontSize="xl" fontWeight="bold">{project.title}</Text>
@@ -62,7 +60,7 @@ const Projects = () => {
                   </Link>
                 </Flex>
               </VStack>
-            </MotionBox>
+            </Box>
           ))}
         </Grid>
       </VStack>
