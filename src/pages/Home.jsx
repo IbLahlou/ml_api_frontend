@@ -1,52 +1,37 @@
-
 import React from 'react';
 import { Box, VStack, Text, Heading, IconButton, Container, SimpleGrid } from '@chakra-ui/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
 const Home = () => {
   return (
-    <Container maxW="container.xl" py={10}>
-      <VStack spacing={8}>
+    <Container maxW="container.lg" py={10}>
+      <VStack spacing={8} align="stretch">
         <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Heading size="2xl" mb={4}>Welcome to My Portfolio</Heading>
-          <Text fontSize="xl" color="gray.400" textAlign="center">
-            MLOps Engineer & Data Science Enthusiast
+          <Heading as="h1" size="2xl" mb={4}>
+            Welcome to My Portfolio
+          </Heading>
+          <Text fontSize="xl" color="gray.500">
+            MLOps Engineer & Data Scientist
           </Text>
         </MotionBox>
 
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-          <MotionBox
-            whileHover={{ scale: 1.05 }}
-            p={6}
-            bg="#2c2e33"
-            borderRadius="lg"
-          >
-            <Heading size="md" mb={4}>About Me</Heading>
-            <Text>
-              Passionate MLOps engineer focused on building and deploying scalable ML solutions.
-              Experienced in CI/CD pipelines, model monitoring, and automation.
-            </Text>
-          </MotionBox>
-
-          <MotionBox
-            whileHover={{ scale: 1.05 }}
-            p={6}
-            bg="#2c2e33"
-            borderRadius="lg"
-          >
-            <Heading size="md" mb={4}>My Focus</Heading>
-            <Text>
-              Specializing in MLOps and creating efficient deployment pipelines for machine learning models.
-            </Text>
-          </MotionBox>
-        </SimpleGrid>
+        <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Text fontSize="lg">
+            I specialize in MLOps and Data Science, focusing on building and deploying machine learning models at scale.
+            My expertise includes model deployment, monitoring, and optimization of ML pipelines.
+          </Text>
+        </MotionBox>
 
         <Box mt={8}>
           <SimpleGrid columns={3} spacing={4}>
